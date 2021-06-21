@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import TodoNew from './TodoNew'
 
 
 const Home = () => {
@@ -48,6 +49,9 @@ const Home = () => {
     <br/>
     <div>
     {renderTodos()}
+    </div>
+    <div>
+      {TodoNew()}
     </div>
     </>
   )
