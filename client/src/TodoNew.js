@@ -32,8 +32,9 @@ const TodoNew = () => {
         defaultValue={body}
         placeholder='body'
       />
+       <button type='submit'>Submit</button>
       </form>
-      <button type='submit'>Submit</button>
+     
     </div>
   )
 }

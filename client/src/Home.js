@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { useParams, useHistory } from 'react-router-dom'
 import TodoNew from './TodoNew'
 
 
 const Home = () => {
-  
+  const { id } = useParams()
+  const history = useHistory()
 
   useEffect(() => {
    getTodos()
@@ -23,21 +25,30 @@ const Home = () => {
     }
   }
 
+ 
+
   const renderTodos = () => {
     return todos.map ( todo=>{
       return(
         <div>
-          <p>blah1</p>
-          <p>{todo.title}</p>
-          <p>{todo.body}</p>
-          <p>blah2</p>
+         
+          <p>Title: {todo.title}</p>
+          <p>Body: {todo.body}</p>
+          <p>ID: {todo.id}</p>
+          <button onClick={deleteTodo}>delete</button>
+          <br/>
         </div>
       )
-    }
-      
-      
+    } 
     )
   }
+
+  const deleteTodo = async(id) =>{
+    // TODO fix this. need to figure out how to pass in the individual IDs to make this work. 
+    let rez = await axios.delete(`/api/todos/${id}`)
+    history.push('/')
+  }
+ 
 
   return (
     <>
