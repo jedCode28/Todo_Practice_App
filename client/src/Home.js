@@ -5,7 +5,7 @@ import TodoNew from './TodoNew'
 
 
 const Home = () => {
-  const { id } = useParams()
+  // const { id } = useParams()
   const history = useHistory()
 
   useEffect(() => {
@@ -29,23 +29,25 @@ const Home = () => {
 
   const renderTodos = () => {
     return todos.map ( todo=>{
+      const tid = todo.id
       return(
         <div>
-         
           <p>Title: {todo.title}</p>
           <p>Body: {todo.body}</p>
           <p>ID: {todo.id}</p>
+          {/* if passing deletetodo(tid) causes all to be deleted. but delete fxn works technically.  */}
           <button onClick={deleteTodo}>delete</button>
           <br/>
         </div>
+        
       )
     } 
     )
   }
 
-  const deleteTodo = async(id) =>{
+  const deleteTodo = async(tid) =>{
     // TODO fix this. need to figure out how to pass in the individual IDs to make this work. 
-    let rez = await axios.delete(`/api/todos/${id}`)
+    let rez = await axios.delete(`/api/todos/${tid}`)
     history.push('/')
   }
  
